@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Jhonny",
+    "password": "abc",
+    "workplace": "NASA"
+  },
+  {
+    "name": "Honey",
+    "password": "123",
+    "workplace": "Google"
+  },
+  {
+    "name": "Rohan",
+    "password": "xyz",
+    "workplace": "Facebook"
+  },
+  {
+    "name": "Max",
+    "password": "4895",
+    "workplace": "ISRO"
+  },
+  {
+    "name": "Viren",
+    "password": "32kd",
+    "workplace": "Microsoft"
+  },
+  {
+    "name": "Alan",
+    "password": "2je3",
+    "workplace": "Amazon"
+  },
+  {
+    "name": "Annie",
+    "password": "jdu1",
+    "workplace": "Alphabet"
+  },
+  {
+    "name": "Sophie",
+    "password": "djj1",
+    "workplace": "SpaceX"
+  },
+  {
+    "name": "Lauren",
+    "password": "dk12",
+    "workplace": "Pentagon"
+  },
+  {
+    "name": "Jenifier",
+    "password": "J65r",
+    "workplace": "Hollywood"
+  }
+]
