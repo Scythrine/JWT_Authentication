@@ -2,10 +2,10 @@
   "name": "project-2",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "appServer.js",
   "scripts": {
-    "start": "nodemon main.js",
-    "startAuth": "nodemon auth.js",
+    "start": "nodemon appServer.js",
+    "startAuth": "nodemon authServer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rohan",
