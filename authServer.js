@@ -44,18 +44,6 @@ app.post("/login", getCredential, (req, res) => {
 
 //Function and Middlewares
 
-function refreshingToken(req, res, next) {
-  jwt.verify(req.body.token, process.env.REFRESH_TOKEN, (err, data) => {
-    if (!err) {
-      let newToken = getAccessToken(data.user);
-      req.newToken = newToken;
-      next();
-    } else {
-      throw err;
-    }
-  });
-}
-
 function getCredential(req, res, next) {
   let name = req.body.name;
   let pass = req.body.password;
@@ -101,8 +89,12 @@ function checkPassword(name, pass) {
 }
 
 function getAllToken(userData) {
-  let AccessToken = getAccessToken(userData);
-  let RefreshToken = getRefreshToken(userData);
+  let data = {
+    name: userData[0].name,
+    workplace: userData[0].workplace,
+  };
+  let AccessToken = getAccessToken(data);
+  let RefreshToken = getRefreshToken(data);
 
   const tokens = {
     AccessToken: AccessToken,
@@ -111,25 +103,34 @@ function getAllToken(userData) {
   return tokens;
 }
 
-function getAccessToken(userData) {
-  let data = {
-    name: userData[0].name,
-    workplace: userData[0].workplace,
-  };
+function getAccessToken(data) {
   return jwt.sign(data, process.env.ACCESS_TOKEN, {
-    expiresIn: "10s",
+    expiresIn: "5m",
   });
 }
 
-function getRefreshToken(userData) {
-  let data = {
-    name: userData[0].name,
-    workplace: userData[0].workplace,
-  };
+function getRefreshToken(data) {
   return jwt.sign(data, process.env.REFRESH_TOKEN, {
     expiresIn: "2w",
   });
 }
+
+function refreshingToken(req, res, next) {
+  jwt.verify(req.body.token, process.env.REFRESH_TOKEN, (err, data) => {
+    if (!err) {
+      let newData = {
+        name: data.name,
+        workplace: data.workplace,
+      };
+      let newToken = getAccessToken(newData);
+      req.newToken = newToken;
+      next();
+    } else {
+      throw err;
+    }
+  });
+}
+
 //Server
 const port = process.env.AUTH_PORT;
 
